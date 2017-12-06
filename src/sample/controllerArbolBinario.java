@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,6 +26,36 @@ public class controllerArbolBinario implements Initializable {
     TextField buscar;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ArbolBinario arbolBinario = new ArbolBinario();
+
+        arbolBinario.valores();
+        this.PreOrdenBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                LabelLbl.setText("PreOrden: ");
+                TextoLb.setText("                     "+arbolBinario.preOrden(arbolBinario.raiz));
+                arbolBinario.vaciar();
+            }
+        });
+
+        this.InOrdenBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                LabelLbl.setText("");
+                LabelLbl.setText(" InOrden");
+                TextoLb.setText("                     "+arbolBinario.inOrden(arbolBinario.raiz));
+                arbolBinario.vaciar();
+            }
+        });
+        this.PostOrdenBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                LabelLbl.setText("");
+                LabelLbl.setText("PostOrden: ");
+                TextoLb.setText("                     "+arbolBinario.posOrden(arbolBinario.raiz));
+                arbolBinario.vaciar();
+            }
+        });
 
     }
 }
